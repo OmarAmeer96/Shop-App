@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         HomeView.id: (context) => const HomeView(),
+        SplashView.id: (context) => const SplashView(),
       },
       initialRoute: SplashView.id,
     );

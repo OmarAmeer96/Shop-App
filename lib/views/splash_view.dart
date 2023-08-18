@@ -13,14 +13,13 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: Lottie.asset(
-        "assets/json/splash.json",
+        "assets/json/splashView2.json",
         width: 120,
         height: 120,
       ),
-      backgroundColor: const Color(0xff1a1512),
       nextScreen: const HomeView(),
       splashIconSize: 350,
-      duration: 2000,
+      duration: 1700,
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
     );
