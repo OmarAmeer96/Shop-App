@@ -43,15 +43,6 @@ class SignUpView extends StatelessWidget {
         body: SingleChildScrollView(
           child: Stack(
             children: [
-              Column(
-                children: [
-                  Image.asset("assets/images/loginup.png"),
-                  const SizedBox(
-                    height: 265,
-                  ),
-                  Image.asset("assets/images/log2Image.png"),
-                ],
-              ),
               Positioned(
                 top: 83.25,
                 left: 183.25,
