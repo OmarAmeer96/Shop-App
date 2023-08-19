@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/consts.dart';
 
 class CustomPasswordTextField extends StatefulWidget {
   const CustomPasswordTextField({
@@ -34,16 +35,16 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
       obscureText: obscureText,
       onChanged: widget.onChanged,
       enabled: true,
-      style: const TextStyle(
-        color: Color(0xff181725),
+      style: TextStyle(
+        color: textColor,
         fontSize: 18,
         fontFamily: 'Gilroy-Medium',
       ),
       decoration: InputDecoration(
-        floatingLabelStyle: const TextStyle(
+        floatingLabelStyle: TextStyle(
           fontSize: 18,
           fontFamily: 'Gilroy-Medium',
-          color: Color(0xff181725),
+          color: textColor,
         ),
         constraints: const BoxConstraints(
           maxHeight: 80,
@@ -52,8 +53,8 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
           minWidth: double.infinity,
         ),
         labelText: widget.text,
-        labelStyle: const TextStyle(
-          color: Color(0xff181725),
+        labelStyle: TextStyle(
+          color: textColor,
           fontFamily: 'Gilroy-Medium',
         ),
         border: OutlineInputBorder(
@@ -65,8 +66,8 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Color(0xff181725),
+          borderSide: BorderSide(
+            color: color2,
             width: 2.5,
           ),
         ),
@@ -79,14 +80,14 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Color(0xff181725),
+          borderSide: BorderSide(
+            color: color2,
             width: 1.0,
           ),
         ),
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           Icons.fingerprint,
-          color: Color(0xff181725),
+          color: color2,
         ),
         suffixIcon: InkWell(
           onTap: () {
@@ -94,7 +95,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
           },
           child: Icon(
             obscureText ? Icons.visibility_off : Icons.visibility,
-            color: const Color(0xff181725),
+            color: color2,
           ),
         ),
       ),

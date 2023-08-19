@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/consts.dart';
 import 'package:shop_app/views/home_view.dart';
 import 'package:shop_app/views/sign_up_view.dart';
 import '../cubits/signin_cubit/signin_cubit.dart';
+import '../helpers/show_error_snack_bar.dart';
 import '../helpers/validation_helper.dart';
 import '../widgets/custom_email_text_field.dart';
 import '../widgets/custom_main_button.dart';
 import '../widgets/custom_password_text_field.dart';
-import '../helpers/show_snack_bar.dart';
+import '../helpers/show_success_snack_bar.dart';
 import 'reset_password_view.dart';
 
 // ignore: must_be_immutable
 class SignInView extends StatelessWidget {
   static String id = "SignInScreen";
   final _form = GlobalKey<FormState>();
-  String? email;
-  String? password;
-  String? rePassword;
+  late String? email;
+  late String? password;
+  late String? rePassword;
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -27,6 +29,9 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return BlocListener<SigninCubit, SigninState>(
       listener: (context, state) {
         if (state is SigninLoading) {
@@ -34,160 +39,152 @@ class SignInView extends StatelessWidget {
         } else if (state is SigninSuccess) {
           Navigator.pushNamed(context, HomeView.id);
           _isLoading = false;
-          showSnackBar(context, state.successMessage);
+          showSuccessSnackBar(context, state.successMessage);
         } else if (state is SigninFailure) {
-          showSnackBar(context, state.errorMessage);
+          showErrorSnackBar(context, state.errorMessage);
           _isLoading = false;
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xfffcfcfc),
+        backgroundColor: backColor,
         body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+            child: Form(
+              key: _form,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset("assets/images/loginup.png"),
-                  const SizedBox(height: 265),
-                  Image.asset("assets/images/log2Image.png"),
+                  SizedBox(height: screenHeight * 0.06),
+                  Center(
+                    child: Image.asset(
+                      "assets/images/logoLogin.png",
+                      height: screenHeight * 0.15,
+                      width: screenWidth * 0.3,
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.04),
+                  Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: screenWidth * 0.08,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Gilroy-Medium",
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  Text(
+                    "Enter your email and password",
+                    style: TextStyle(
+                      color: const Color(0xff7C7C7C),
+                      fontSize: screenWidth * 0.035,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Gilroy-Medium",
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.04),
+                  CustomEmailTextField(
+                    controller: _emailController,
+                    onChanged: (data) {
+                      email = data;
+                    },
+                    validator: (value) {
+                      return validateEmail(value!);
+                    },
+                  ),
+                  SizedBox(height: screenHeight * 0.015),
+                  CustomPasswordTextField(
+                    controller: _passwordController,
+                    text: "PASSWORD",
+                    onChanged: (data) {
+                      password = data;
+                    },
+                    validator: (value) {
+                      return validatePassword(value!);
+                    },
+                  ),
+                  SizedBox(height: screenHeight * 0.002),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, ResetPasswordView.id);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Forgot password?",
+                          style: TextStyle(
+                            color: color1,
+                            fontSize: screenWidth * 0.04,
+                            decoration: TextDecoration.underline,
+                            fontFamily: "Gilroy-Medium",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.06),
+                  Center(
+                    child: BlocBuilder<SigninCubit, SigninState>(
+                      builder: (context, state) {
+                        return _isLoading
+                            ? const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xff8d0000),
+                                ),
+                              )
+                            : CustomMainButton(
+                                text: "Sign In",
+                                onPressed: () async {
+                                  if (_form.currentState!.validate()) {
+                                    BlocProvider.of<SigninCubit>(context)
+                                        .signInUser(
+                                      email: email!,
+                                      password: password!,
+                                    );
+                                  }
+                                },
+                              );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.04),
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don’t have an account? ",
+                          style: TextStyle(
+                            color: textColor,
+                            fontSize: screenWidth * 0.036,
+                            fontFamily: "Gilroy-Medium",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, SignUpView.id);
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              color: const Color(0xff8D070F),
+                              fontSize: screenWidth * 0.04,
+                              decoration: TextDecoration.underline,
+                              fontFamily: "Gilroy-Medium",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-              Positioned(
-                top: 83.25,
-                left: 183.25,
-                child: Image.asset("assets/images/logoLogin.png"),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Form(
-                  key: _form,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 250),
-                      const Text(
-                        "Sign In",
-                        style: TextStyle(
-                          color: Color(0xff181725),
-                          fontSize: 26,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Gilroy-Medium",
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "Enter your email and password",
-                        style: TextStyle(
-                          color: Color(0xff7C7C7C),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Gilroy-Medium",
-                        ),
-                      ),
-                      const SizedBox(height: 35),
-                      CustomEmailTextField(
-                        controller: _emailController,
-                        onChanged: (data) {
-                          email = data;
-                        },
-                        validator: (value) {
-                          return validateEmail(value!);
-                        },
-                      ),
-                      const SizedBox(height: 15),
-                      CustomPasswordTextField(
-                        controller: _passwordController,
-                        text: "PASSWORD",
-                        onChanged: (data) {
-                          password = data;
-                        },
-                        validator: (value) {
-                          return validatePassword(value!);
-                        },
-                      ),
-                      const SizedBox(height: 15),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, ResetPasswordView.id);
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              "Forgot password?",
-                              style: TextStyle(
-                                color: Color(0xff181725),
-                                fontSize: 15,
-                                decoration: TextDecoration.underline,
-                                fontFamily: "Gilroy-Medium",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      Center(
-                        child: BlocBuilder<SigninCubit, SigninState>(
-                          builder: (context, state) {
-                            return _isLoading
-                                ? const CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      Color(0xff8d0000),
-                                    ),
-                                  )
-                                : CustomMainButton(
-                                    text: "Sign In",
-                                    onPressed: () async {
-                                      if (_form.currentState!.validate()) {
-                                        BlocProvider.of<SigninCubit>(context)
-                                            .signInUser(
-                                          email: email!,
-                                          password: password!,
-                                        );
-                                      }
-                                    },
-                                  );
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Don’t have an account? ",
-                              style: TextStyle(
-                                color: Color(0xff181725),
-                                fontSize: 15,
-                                fontFamily: "Gilroy-Medium",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, SignUpView.id);
-                              },
-                              child: const Text(
-                                "Sign Up",
-                                style: TextStyle(
-                                  color: Color(0xff8D070F),
-                                  fontSize: 15,
-                                  decoration: TextDecoration.underline,
-                                  fontFamily: "Gilroy-Medium",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

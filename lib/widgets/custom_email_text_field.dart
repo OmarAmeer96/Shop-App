@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/consts.dart';
 
 class CustomEmailTextField extends StatelessWidget {
   const CustomEmailTextField({
@@ -19,16 +20,16 @@ class CustomEmailTextField extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       enabled: true,
-      style: const TextStyle(
-        color: Color(0xff181725),
+      style: TextStyle(
+        color: textColor,
         fontSize: 18,
         fontFamily: 'Gilroy-Medium',
       ),
       decoration: InputDecoration(
-        floatingLabelStyle: const TextStyle(
+        floatingLabelStyle: TextStyle(
           fontSize: 18,
           fontFamily: 'Gilroy-Medium',
-          color: Color(0xff181725),
+          color: textColor,
         ),
         constraints: const BoxConstraints(
           maxHeight: 80,
@@ -37,8 +38,8 @@ class CustomEmailTextField extends StatelessWidget {
           minWidth: double.infinity,
         ),
         labelText: 'E-MAIL',
-        labelStyle: const TextStyle(
-          color: Color(0xff181725),
+        labelStyle: TextStyle(
+          color: textColor,
           fontFamily: 'Gilroy-Medium',
         ),
         border: OutlineInputBorder(
@@ -50,8 +51,8 @@ class CustomEmailTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Color(0xff181725),
+          borderSide: BorderSide(
+            color: color2,
             width: 2.5,
           ),
         ),
@@ -64,14 +65,14 @@ class CustomEmailTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Color(0xff181725),
+          borderSide: BorderSide(
+            color: color2,
             width: 1.0,
           ),
         ),
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           Icons.email_outlined,
-          color: Color(0xff181725),
+          color: color2,
         ),
       ),
       validator: validator,

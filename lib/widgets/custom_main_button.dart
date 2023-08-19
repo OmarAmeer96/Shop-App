@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/consts.dart';
 
 class CustomMainButton extends StatelessWidget {
   final String text;
@@ -16,7 +17,7 @@ class CustomMainButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
-        backgroundColor: const Color(0xff8D070F),
+        backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(19),
         ),
