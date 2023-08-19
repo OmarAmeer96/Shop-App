@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shop_app/consts.dart';
-import 'package:shop_app/views/home_view.dart';
+import 'package:shop_app/views/sign_up_view.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -19,7 +19,7 @@ class SplashView extends StatelessWidget {
         height: 120,
       ),
       backgroundColor: backColor,
-      nextScreen: const HomeView(),
+      nextScreen: SignUpView(),
       splashIconSize: 350,
       duration: 1700,
       splashTransition: SplashTransition.fadeTransition,

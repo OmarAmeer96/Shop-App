@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_groceries_app/cubits/signin_cubit/signin_cubit.dart';
-import 'package:online_groceries_app/screens/sign_up_screen.dart';
+import 'package:shop_app/views/home_view.dart';
+import 'package:shop_app/views/sign_up_view.dart';
+import '../cubits/signin_cubit/signin_cubit.dart';
 import '../helpers/validation_helper.dart';
 import '../widgets/custom_email_text_field.dart';
 import '../widgets/custom_main_button.dart';
 import '../widgets/custom_password_text_field.dart';
 import '../helpers/show_snack_bar.dart';
-import 'home_screen.dart';
 import 'reset_password_view.dart';
 
 // ignore: must_be_immutable
-class SignInScreen extends StatelessWidget {
+class SignInView extends StatelessWidget {
   static String id = "SignInScreen";
   final _form = GlobalKey<FormState>();
   String? email;
@@ -23,7 +23,7 @@ class SignInScreen extends StatelessWidget {
 
   bool _isLoading = false;
 
-  SignInScreen({super.key});
+  SignInView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class SignInScreen extends StatelessWidget {
         if (state is SigninLoading) {
           _isLoading = true;
         } else if (state is SigninSuccess) {
-          Navigator.pushNamed(context, HomeScreen.id);
+          Navigator.pushNamed(context, HomeView.id);
           _isLoading = false;
           showSnackBar(context, state.successMessage);
         } else if (state is SigninFailure) {
@@ -108,7 +108,7 @@ class SignInScreen extends StatelessWidget {
                       const SizedBox(height: 15),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, ResetPasswordScreen.id);
+                          Navigator.pushNamed(context, ResetPasswordView.id);
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -167,7 +167,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, SignUpScreen.id);
+                                Navigator.pushNamed(context, SignUpView.id);
                               },
                               child: const Text(
                                 "Sign Up",

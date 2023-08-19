@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_groceries_app/cubits/reset_cubit/reset_cubit.dart';
-import 'package:online_groceries_app/helpers/validation_helper.dart';
+import '../cubits/reset_cubit/reset_cubit.dart';
 import '../helpers/show_snack_bar.dart';
+import '../helpers/validation_helper.dart';
 import '../widgets/custom_email_text_field.dart';
 import '../widgets/custom_main_button.dart';
 
 // ignore: must_be_immutable
-class ResetPasswordScreen extends StatelessWidget {
+class ResetPasswordView extends StatelessWidget {
   static String id = "ResetPasswordScreen";
   final _form = GlobalKey<FormState>();
   String? email;
@@ -16,7 +16,7 @@ class ResetPasswordScreen extends StatelessWidget {
 
   bool _isLoading = false;
 
-  ResetPasswordScreen({super.key});
+  ResetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {

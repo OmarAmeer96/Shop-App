@@ -5,6 +5,9 @@ import 'package:shop_app/views/home_view.dart';
 import 'package:shop_app/views/splash_view.dart';
 import 'cubits/signin_cubit/signin_cubit.dart';
 import 'firebase_options.dart';
+import 'views/reset_password_view.dart';
+import 'views/sign_in_view.dart';
+import 'views/sign_up_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +37,9 @@ class MyApp extends StatelessWidget {
         routes: {
           HomeView.id: (context) => const HomeView(),
           SplashView.id: (context) => const SplashView(),
+          ResetPasswordView.id: (context) => ResetPasswordView(),
+          SignInView.id: (context) => SignInView(),
+          SignUpView.id: (context) => SignUpView(),
         },
         initialRoute: SplashView.id,
       ),

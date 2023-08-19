@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_groceries_app/helpers/validation_helper.dart';
 import '../cubits/signup_cubit/signup_cubit.dart';
+import '../helpers/validation_helper.dart';
 import '../widgets/custom_email_text_field.dart';
 import '../widgets/custom_main_button.dart';
 import '../widgets/custom_password_text_field.dart';
@@ -9,7 +9,7 @@ import '../helpers/show_snack_bar.dart';
 import 'sign_in_view.dart';
 
 // ignore: must_be_immutable
-class SignUpScreen extends StatelessWidget {
+class SignUpView extends StatelessWidget {
   static String id = "SignUpScreen";
   String? email;
   String? password;
@@ -21,7 +21,7 @@ class SignUpScreen extends StatelessWidget {
   final _form = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  SignUpScreen({super.key});
+  SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -233,7 +233,7 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, SignInScreen.id);
+                                Navigator.pushNamed(context, SignInView.id);
                               },
                               child: const Text(
                                 "Sign In",
