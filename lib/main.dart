@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           SignInView.id: (context) => SignInView(),
           SignUpView.id: (context) => SignUpView(),
         },
-        initialRoute: SplashView.id,
+        initialRoute: HomeView.id,
       ),
     );
   }
