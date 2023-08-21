@@ -15,33 +15,36 @@ class HomeView extends StatelessWidget {
       appBar: buildAppBar(),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Center(
-              child: Card(
-                color: primaryColor,
-                child: const Column(
+            Card(
+              elevation: 2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
                   children: [
-                    Text("HandBag LV"),
-                    Row(
+                    const Text("HandBag LV"),
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("\$225"),
-                        Spacer(),
-                        Icon(Icons.favorite),
-                        Icon(Icons.abc),
-                        Icon(Icons.abc_sharp),
-                        Icon(Icons.access_alarm_outlined),
-                        Icon(Icons.abc),
-                        Icon(Icons.create_new_folder_sharp),
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
-                //       height: screenHeight * 0.13,
-                // width: screenWidth * 0.45,
-                // decoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(16),
-                //   color: primaryColor,
               ),
+              //       height: screenHeight * 0.13,
+              // width: screenWidth * 0.45,
+              // decoration: BoxDecoration(
+              //   borderRadius: BorderRadius.circular(16),
+              //   color: primaryColor,
             )
           ],
         ),
