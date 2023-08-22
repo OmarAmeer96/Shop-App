@@ -14,22 +14,9 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          CustomProductCard(
-              screenWidth: screenWidth, screenHeight: screenHeight),
-          Positioned(
-            right: screenWidth * 0.06,
-            top: screenHeight * -0.073,
-            child: Image.network(
-              "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-              height: 105,
-            ),
-          ),
-        ],
-      ),
+    return CustomProductCard(
+      screenWidth: screenWidth,
+      screenHeight: screenHeight,
     );
   }
 }
