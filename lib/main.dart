@@ -5,6 +5,7 @@ import 'package:shop_app/cubits/reset_cubit/reset_cubit.dart';
 import 'package:shop_app/cubits/signup_cubit/signup_cubit.dart';
 import 'package:shop_app/views/home_view.dart';
 import 'package:shop_app/views/splash_view.dart';
+
 import 'cubits/signin_cubit/signin_cubit.dart';
 import 'firebase_options.dart';
 import 'views/reset_password_view.dart';

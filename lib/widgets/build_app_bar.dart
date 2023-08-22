@@ -12,7 +12,7 @@ AppBar buildAppBar() {
         onPressed: () {},
       ),
     ],
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.white,
     elevation: 0,
     title: const Text(
       "New Trend",
