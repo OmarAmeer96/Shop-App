@@ -15,23 +15,20 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: screenWidth * 0.5,
-        height: screenHeight * 0.14,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 9,
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 0,
-              offset: const Offset(4, 6),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          CustomProductCard(
+              screenWidth: screenWidth, screenHeight: screenHeight),
+          Positioned(
+            right: screenWidth * 0.06,
+            top: screenHeight * -0.073,
+            child: Image.network(
+              "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+              height: 105,
             ),
-          ],
-        ),
-        child: CustomProductCard(
-          screenWidth: screenWidth,
-          screenHeight: screenHeight,
-        ),
+          ),
+        ],
       ),
     );
   }
