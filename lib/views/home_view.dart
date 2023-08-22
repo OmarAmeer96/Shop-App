@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/consts.dart';
 
 import '../widgets/build_app_bar.dart';
 
@@ -11,42 +10,48 @@ class HomeView extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: backColor,
+      backgroundColor: Colors.white,
       appBar: buildAppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Card(
-              elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
+      body: SizedBox(
+        width: screenWidth * 0.5,
+        height: screenHeight * 0.14,
+        child: Card(
+          color: Colors.white,
+          elevation: 5,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "HandBag LV",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "Gilroy-Bold",
+                    fontSize: screenWidth * 0.036,
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.01,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("HandBag LV"),
-                    SizedBox(
-                      height: screenHeight * 0.02,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("\$225"),
-                        Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        ),
-                      ],
+                    Text("\$225"),
+                    Icon(
+                      Icons.favorite,
+                      color: Colors.red,
                     ),
                   ],
                 ),
-              ),
-              //       height: screenHeight * 0.13,
-              // width: screenWidth * 0.45,
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(16),
-              //   color: primaryColor,
-            )
-          ],
+              ],
+            ),
+          ),
+          //       height: screenHeight * 0.13,
+          // width: screenWidth * 0.45,
+          // decoration: BoxDecoration(
+          //   borderRadius: BorderRadius.circular(16),
+          //   color: primaryColor,
         ),
       ),
     );

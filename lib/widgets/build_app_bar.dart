@@ -5,7 +5,10 @@ AppBar buildAppBar() {
   return AppBar(
     actions: [
       IconButton(
-        icon: const Icon(FontAwesomeIcons.cartShopping),
+        icon: const Icon(
+          FontAwesomeIcons.cartShopping,
+          color: Colors.black,
+        ),
         onPressed: () {},
       ),
     ],
@@ -15,6 +18,7 @@ AppBar buildAppBar() {
       "New Trend",
       style: TextStyle(
         fontFamily: "Gilroy-Bold",
+        color: Colors.black,
       ),
     ),
     centerTitle: true,
