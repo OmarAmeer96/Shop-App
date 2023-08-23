@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/views/edit_product_view.dart';
 
 import '../models/product_model.dart';
 
@@ -86,7 +87,9 @@ class CustomProductCard extends StatelessWidget {
             color: Colors.black,
             size: 20,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, EditProductView.id);
+          },
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/cubits/reset_cubit/reset_cubit.dart';
 import 'package:shop_app/cubits/signup_cubit/signup_cubit.dart';
+import 'package:shop_app/views/edit_product_view.dart';
 import 'package:shop_app/views/home_view.dart';
 import 'package:shop_app/views/splash_view.dart';
 
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           ResetPasswordView.id: (context) => ResetPasswordView(),
           SignInView.id: (context) => SignInView(),
           SignUpView.id: (context) => SignUpView(),
+          EditProductView.id: (context) => const EditProductView(),
         },
         initialRoute: HomeView.id,
       ),
