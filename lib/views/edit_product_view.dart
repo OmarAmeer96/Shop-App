@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/product_model.dart';
+import 'package:shop_app/services/update_product_service.dart';
 import 'package:shop_app/widgets/custom_main_button.dart';
 import 'package:shop_app/widgets/custom_text_field.dart';
 
@@ -7,13 +9,13 @@ class EditProductView extends StatelessWidget {
   EditProductView({super.key});
 
   static String id = "EditProductView";
-  String? productName, desc, image;
-  double? price;
+  String? productName, desc, image, price;
 
   @override
   Widget build(BuildContext context) {
+    ProductModel product =
+        ModalRoute.of(context)!.settings.arguments as ProductModel;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         // To close keyboard and remove focus from text fields.
@@ -53,7 +55,7 @@ class EditProductView extends StatelessWidget {
                 CustomTextField(
                   textType: TextInputType.number,
                   onChanged: (data) {
-                    price = double.parse(data);
+                    price = data;
                   },
                   hintText: "Enter Price",
                   labelText: "Price",
@@ -71,7 +73,17 @@ class EditProductView extends StatelessWidget {
                 SizedBox(
                   height: screenHeight * 0.35,
                 ),
-                CustomMainButton(text: "Update", onPressed: () {}),
+                CustomMainButton(
+                    text: "Update",
+                    onPressed: () {
+                      UpdateProductService().updateProduct(
+                        title: productName!,
+                        price: price!,
+                        description: desc!,
+                        image: image!,
+                        category: product.category,
+                      );
+                    }),
               ],
             ),
           ),

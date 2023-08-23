@@ -88,7 +88,11 @@ class CustomProductCard extends StatelessWidget {
             size: 20,
           ),
           onPressed: () {
-            Navigator.pushNamed(context, EditProductView.id);
+            Navigator.pushNamed(
+              context,
+              EditProductView.id,
+              arguments: product,
+            );
           },
         ),
       ],
