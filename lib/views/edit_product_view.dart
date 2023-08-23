@@ -10,7 +10,9 @@ class EditProductView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildEditProductViewAppBar(context),
-      body: ,
+      body: Column(
+        children: [],
+      ),
     );
   }
 
