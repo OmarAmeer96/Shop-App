@@ -20,8 +20,6 @@ class CustomProductCard extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          // width: screenWidth * 0.5,
-          // height: screenHeight * 0.14,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -81,6 +79,14 @@ class CustomProductCard extends StatelessWidget {
             height: screenHeight * 0.12,
             width: screenWidth * 0.24,
           ),
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.edit,
+            color: Colors.black,
+            size: 20,
+          ),
+          onPressed: () {},
         ),
       ],
     );
