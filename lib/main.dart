@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           ResetPasswordView.id: (context) => ResetPasswordView(),
           SignInView.id: (context) => SignInView(),
           SignUpView.id: (context) => SignUpView(),
-          EditProductView.id: (context) => const EditProductView(),
+          EditProductView.id: (context) => EditProductView(),
         },
         initialRoute: HomeView.id,
       ),

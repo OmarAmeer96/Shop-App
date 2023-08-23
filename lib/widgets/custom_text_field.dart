@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/consts.dart';
 
 // ignore: must_be_immutable
-class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      {super.key,
-      required this.hintText,
-      required this.labelText,
-      this.onChanged});
+class CustomTextField extends StatelessWidget {
+  CustomTextField({
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    this.onChanged,
+    this.textType,
+  });
 
   String hintText;
   String labelText;
   Function(String)? onChanged;
+  TextInputType? textType;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: (data) {
-        if (data!.isEmpty) {
-          return 'This field is required';
-        }
-        return null;
-      },
+    return TextField(
+      keyboardType: textType,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 18,
+      ),
       onChanged: onChanged,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
@@ -29,24 +32,24 @@ class CustomTextFormField extends StatelessWidget {
         ),
         hintText: hintText,
         hintStyle: const TextStyle(
-          color: Color(0xffE5E4E2),
+          color: Colors.grey,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.white,
+          borderSide: BorderSide(
+            color: primaryColor,
           ),
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(12),
         ),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.white,
+          borderSide: BorderSide(
+            color: primaryColor,
           ),
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(12),
         ),
         label: Text(
           labelText,
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),
